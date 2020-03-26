@@ -1,4 +1,6 @@
-# Everylwell code challenge
+# Everylwell backend code challenge
+
+https://github.com/EverlyWell/backend-challenge
 
 - [Production](#production)
 - [Development](#development)
@@ -36,24 +38,25 @@ Once a list is complete, ask them to rank the list in order of importance to the
 
 ### API changes
 
-- Require user authentication (maybe allow guest users to view member profiles)
+- [ ] Require user authentication (maybe allow guest users to view member profiles)
     - Use a Ruby gem like Devise for social login, password resets, etc.
-- Version the API
+- [ ] Version the API
+- [ ] Paginate the users index
 
 ### Technical changes
 
-- Create a frontend UI for end users
-- Use UUID instead of integer IDs as primary key (best for distributed systems)
-- Standardize data serialization
-- Add internationalization
-- Setup Docker for easy deployment to Heroku, AWS, etc.
-- Index frequently queried columns such as `websites.url`
-- Add foreign key constraints
-- Add automated tests
-- Send log data to an external service like DataDog
+- [ ] Create a frontend UI for end users
+- [ ] Use UUID instead of integer IDs as primary key (best for distributed systems)
+- [ ] Standardize data serialization
+- [ ] Add internationalization
+- [ ] Setup Docker for easy deployment to Heroku, AWS, etc.
+- [ ] Index frequently queried columns such as `websites.url`
+- [ ] Add foreign key constraints
+- [ ] Add automated tests
+- [ ] Send log data to an external service like DataDog
 
 ### Additional discussions
 
-- Should other users be allowed to update any user info (Wikipedia style)?
-- Should admin users be able to edit/delete any user info?
-- Should users be notified when they get new friends?
+- [ ] Should other users be allowed to update any user info (Wikipedia style)?
+- [ ] Should admin users be able to edit/delete any user info?
+- [ ] Should users be notified when they get new friends?
