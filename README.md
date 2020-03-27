@@ -3,6 +3,7 @@
 https://github.com/EverlyWell/backend-challenge
 
 - [Production](#production)
+  - [Deployment](#deployment)
 - [Development](#development)
   - [Design decisions](#design-decisions)
 - [Road map](#road-map)
@@ -12,10 +13,27 @@ https://github.com/EverlyWell/backend-challenge
 
 ## Production
 
-To deploy to production from your local machine, run the following:
+The API is located at https://protected-stream-56118.herokuapp.com/. The home route should display something similar to the following:
+
+```json
+{
+  "name": "Experts Directory Search Tool",
+  "description": "Search for experts based on headings on their personal website",
+  "version": "0.1.0"
+}
+```
+
+### Deployment
+
+To deploy to production from your local machine, run the following from the project root directory:
 
     git push heroku master
+    heroku run rake db:migrate
 
+To view the logs:
+
+    heroku logs
+    
 ## Development
 
 **System Requirements**
