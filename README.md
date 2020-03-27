@@ -42,6 +42,9 @@ Once a list is complete, ask them to rank the list in order of importance to the
     - Use a Ruby gem like Devise for social login, password resets, etc.
 - [ ] Version the API
 - [ ] Paginate the users index
+- [ ] Consider requiring an email address to make sure users are unique
+- [ ] Standardize error messages
+- [ ] Return JSON responses that include parent keys like `meta` and `data`
 
 ### Technical changes
 
@@ -60,3 +63,4 @@ Once a list is complete, ask them to rank the list in order of importance to the
 - [ ] Should other users be allowed to update any user info (Wikipedia style)?
 - [ ] Should admin users be able to edit/delete any user info?
 - [ ] Should users be notified when they get new friends?
+- [ ] Does every user of this search tool require a website? What if they don't want to share it?
