@@ -13,7 +13,7 @@ class User < ApplicationRecord
     super(
       only: %i[id first_name last_name],
       include: {
-        website: { only: [:url] }
+        website: { only: %i[url headers] }
       }
     )
   end

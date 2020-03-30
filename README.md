@@ -1,11 +1,13 @@
 # Everylwell backend code challenge
 
-https://github.com/EverlyWell/backend-challenge
+Search for experts based on headings on their personal website. 
+Refer to https://github.com/EverlyWell/backend-challenge for more details.
 
 - [Production](#production)
   - [Deployment](#deployment)
 - [Development](#development)
   - [Design decisions](#design-decisions)
+  - [API examples](#api-examples)
 - [Road map](#road-map)
   - [API changes](#api-changes)
   - [Technical changes](#technical-changes)
@@ -33,7 +35,7 @@ To deploy to production from your local machine, run the following from the proj
 To view the logs:
 
     heroku logs
-    
+
 ## Development
 
 **System Requirements**
@@ -47,6 +49,56 @@ To view the logs:
 1. Write user stories to make sure I understand the behavior of the system
 1. Write documentation before/during/after writing code (to ensure it's always relevant)
 1. Create a rapid prototype (no testing, no user authentication, very little refactoring, etc.)
+
+### API examples
+
+```sh
+curl --location --request POST 'https://protected-stream-56118.herokuapp.com/users' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "first_name": "Sandi",
+    "last_name": "Metz",
+    "website_attributes": {
+        "url": "https://www.sandimetz.com/blog"
+    }
+}'
+```
+```javascript
+{
+    "id": 9,
+    "first_name": "Sandi",
+    "last_name": "Metz",
+    "website": {
+        "url": "https://www.sandimetz.com/blog",
+        "headers": [
+            {
+                "title": "Sandi Metz",
+                "header_type": "h1"
+            },
+            {
+                "title": "What Does OO Afford?",
+                "header_type": "h1"
+            },
+            {
+                "title": "Breaking Up the Behemoth",
+                "header_type": "h1"
+            },
+            {
+                "title": "Why We Argue: Style",
+                "header_type": "h1"
+            },
+            {
+                "title": "A Little Background",
+                "header_type": "h2"
+            },
+            {
+                "title": "Subscribe",
+                "header_type": "h2"
+            }
+        ]
+    }
+}
+```
 
 ## Road map
 

@@ -10,6 +10,24 @@ class Website < ApplicationRecord
     super(only: %i[url])
   end
 
+  # Get all the h1, h2, and h3 headings from the website.
+  # NOTE: This makes an HTTP request which can introduce latency.
+  def get_headers
+    uri  = URI.parse(url)
+    body = Net::HTTP.get(uri)
+    document = Nokogiri::HTML(body)
+    values = []
+
+    %i[h1 h2 h3].each do |header|
+      document.css(header).children.each do |child|
+        if child.text.strip.present?
+          values << { title: child.text.strip, header_type: header }
+        end
+      end
+      self.headers = values
+    end
+  end
+
   private
 
   def url_valid
