@@ -8,6 +8,8 @@ Refer to https://github.com/EverlyWell/backend-challenge for more details.
 - [Development](#development)
   - [Design decisions](#design-decisions)
   - [API examples](#api-examples)
+    - [Create user](#create-user)
+    - [Create friendship](#create-friendship)
 - [Road map](#road-map)
   - [API changes](#api-changes)
   - [Technical changes](#technical-changes)
@@ -51,6 +53,8 @@ To view the logs:
 1. Create a rapid prototype (no testing, no user authentication, very little refactoring, etc.)
 
 ### API examples
+
+#### Create user
 
 ```sh
 curl --location --request POST 'https://protected-stream-56118.herokuapp.com/users' \
@@ -100,6 +104,18 @@ curl --location --request POST 'https://protected-stream-56118.herokuapp.com/use
 }
 ```
 
+#### Create friendship
+
+```sh
+curl --location --request POST 'localhost:3000/friendships' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "user_id": 1,
+    "friend_id": 2,
+    "mutual_friend_id": 3
+}'
+```
+
 ## Road map
 
 Below is a list of possible improvements, in no particular order. The order of development should be based on user priorities.
@@ -115,6 +131,8 @@ Once a list is complete, ask them to rank the list in order of importance to the
 - [ ] Consider requiring an email address to make sure users are unique
 - [ ] Standardize error messages
 - [ ] Return JSON responses that include parent keys like `meta` and `data`
+- [ ] Only allow the current user to friend other users
+- [ ] Allow users to accept or reject friend requests
 
 ### Technical changes
 
@@ -127,6 +145,8 @@ Once a list is complete, ask them to rank the list in order of importance to the
 - [ ] Add foreign key constraints
 - [ ] Add automated tests
 - [ ] Send log data to an external service like DataDog
+- [ ] Ensure that friendships are unique and bi-directional at the model and/or database level
+- [ ] Optimize friendship creation route (too many database queries)
 
 ### Additional discussions
 

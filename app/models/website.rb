@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'open-uri'
+
 class Website < ApplicationRecord
   belongs_to :user
 
@@ -13,9 +15,7 @@ class Website < ApplicationRecord
   # Get all the h1, h2, and h3 headings from the website.
   # NOTE: This makes an HTTP request which can introduce latency.
   def get_headers
-    uri  = URI.parse(url)
-    body = Net::HTTP.get(uri)
-    document = Nokogiri::HTML(body)
+    document =  Nokogiri::HTML(open(url))
     values = []
 
     %i[h1 h2 h3].each do |header|

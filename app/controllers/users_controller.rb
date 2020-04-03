@@ -1,18 +1,22 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[show update destroy]
-
   # GET /users
   def index
     @users = User.all
 
-    render json: @users
+    render json: @users.as_json(include: {})
   end
 
   # GET /users/1
   def show
-    render json: @user
+    @user = User.includes(%i[website]).find(params[:id])
+    render json: @user.as_json(
+      include: {
+        friends: { only: %i[id first_name last_name] },
+        website: { only: %i[url headers] }
+      }
+    )
   end
 
   # POST /users
@@ -28,11 +32,6 @@ class UsersController < ApplicationController
   end
 
   private
-
-  # Use callbacks to share common setup or constraints between actions.
-  def set_user
-    @user = User.find(params[:id])
-  end
 
   # Only allow a trusted parameter "white list" through.
   def user_params
