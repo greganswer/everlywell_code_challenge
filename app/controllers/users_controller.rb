@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     render json: @user.as_json(
       include: {
         friends: { only: %i[id first_name last_name] },
-        website: { only: %i[url headers] }
+        website: { only: %i[url shortened headers] }
       }
     )
   end
@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   # POST /users
   def create
     @user = User.new(user_params)
-    @user.website.get_headers
+    @user.website.get_additional_info
 
     if @user.save
       render json: @user, status: :created, location: @user

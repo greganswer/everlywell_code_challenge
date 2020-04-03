@@ -34,6 +34,12 @@ To deploy to production from your local machine, run the following from the proj
     git push heroku master
     heroku run rake db:migrate
 
+Ensure that the production encryption key is set in Heroku
+
+    heroku config:set RAILS_MASTER_KEY=`cat config/credentials/production.key`
+
+Reference: https://blog.saeloun.com/2019/10/10/rails-6-adds-support-for-multi-environment-credentials.html
+
 To view the logs:
 
     heroku logs

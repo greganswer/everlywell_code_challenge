@@ -25,7 +25,7 @@ yehuda = User.new(
 )
 
 [sandi, david, yehuda].each do |user|
-  user.website.get_headers
+  user.website.get_additional_info
   user.save!
 end
 

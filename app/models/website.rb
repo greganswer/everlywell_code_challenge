@@ -9,13 +9,19 @@ class Website < ApplicationRecord
   validate :url_valid
 
   def as_json(_options = {})
-    super(only: %i[url])
+    super(only: %i[url shortened headers])
+  end
+
+  # NOTE: This makes HTTP requests which can introduce latency.
+  def get_additional_info
+    get_headers
+    shorten_url
   end
 
   # Get all the h1, h2, and h3 headings from the website.
   # NOTE: This makes an HTTP request which can introduce latency.
   def get_headers
-    document =  Nokogiri::HTML(open(url))
+    document = Nokogiri::HTML(open(url))
     values = []
 
     %i[h1 h2 h3].each do |header|
@@ -26,6 +32,18 @@ class Website < ApplicationRecord
       end
       self.headers = values
     end
+  end
+
+  # Create a short link using the Bitly API.
+  # NOTE: This makes an HTTP request which can introduce latency.
+  def shorten_url
+    return unless valid?
+
+    token = Rails.application.credentials.bitly[:token]
+    self.shortened = Bitly::API::Client
+                     .new(token: token)
+                     .shorten(long_url: url)
+                     .link
   end
 
   private
