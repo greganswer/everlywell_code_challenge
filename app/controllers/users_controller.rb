@@ -5,18 +5,13 @@ class UsersController < ApplicationController
   def index
     @users = User.all
 
-    render json: @users.as_json(include: {})
+    render json: @users, each_serializer: Users::IndexSerializer
   end
 
   # GET /users/1
   def show
     @user = User.includes(%i[website]).find(params[:id])
-    render json: @user.as_json(
-      include: {
-        friends: { only: %i[id first_name last_name] },
-        website: { only: %i[url shortened headers] }
-      }
-    )
+    render json: @user
   end
 
   # POST /users

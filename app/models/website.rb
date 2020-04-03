@@ -8,10 +8,6 @@ class Website < ApplicationRecord
   validates :url, presence: true
   validate :url_valid
 
-  def as_json(_options = {})
-    super(only: %i[url shortened headers])
-  end
-
   # NOTE: This makes HTTP requests which can introduce latency.
   def get_additional_info
     get_headers

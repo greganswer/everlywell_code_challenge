@@ -10,14 +10,4 @@ class User < ApplicationRecord
 
   validates :first_name, presence: true
   validates :last_name, presence: true
-
-  def as_json(options = {})
-    defaults = {
-      only: %i[id first_name last_name friends_count],
-      include: {
-        website: { only: %i[url headers] }
-      }
-    }
-    super(defaults.merge(options))
-  end
 end
