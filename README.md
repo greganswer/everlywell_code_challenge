@@ -44,6 +44,8 @@ To view the logs:
 
     heroku logs
 
+Reference: https://devcenter.heroku.com/articles/getting-started-with-rails6
+
 ## Development
 
 **System Requirements**
@@ -51,6 +53,14 @@ To view the logs:
 - Ruby 2.6.3
 - Rails 6.0.2
 - Heroku CLI
+
+To test is locally run the following:
+
+    heroku local
+
+If you want to change the `PORT` from 5000 to 3000 (or any other number):
+
+    echo "PORT=3000" >> .env
 
 ### Design decisions
 
