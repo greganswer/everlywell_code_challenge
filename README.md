@@ -32,9 +32,8 @@ The API is located at https://protected-stream-56118.herokuapp.com/. The home ro
 To deploy to production from your local machine, run the following from the project root directory:
 
     git push heroku master
-    heroku run rake db:migrate
 
-Ensure that the production encryption key is set in Heroku
+Ensure that the production encryption key is set in Heroku:
 
     heroku config:set RAILS_MASTER_KEY=`cat config/credentials/production.key`
 
@@ -45,6 +44,18 @@ To view the logs:
     heroku logs
 
 Reference: https://devcenter.heroku.com/articles/getting-started-with-rails6
+
+To view the release status & logs:
+
+```sh
+# To view all releases.
+heroku releases
+
+# To see the output of a particular release.
+heroku releases:output RELEASE_NUMBER
+```
+
+Reference: https://devcenter.heroku.com/articles/release-phase#checking-release-status-logs
 
 ## Development
 
