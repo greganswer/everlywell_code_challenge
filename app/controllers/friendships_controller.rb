@@ -4,7 +4,11 @@ class FriendshipsController < ApplicationController
   # POST /friendships
   def create
     @friendship = Friendship.create_reciprocal_for_ids(friendship_params).first
-    render json: @friendship, status: :created
+    if @friendship.valid?
+      render json: @friendship, status: :created
+    else
+      render json: @friendship.errors, status: :unprocessable_entity
+    end
   end
 
   private

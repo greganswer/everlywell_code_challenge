@@ -6,6 +6,7 @@ class Friendship < ApplicationRecord
   belongs_to :mutual_friend, class_name: 'User', optional: true
 
   validates :user, uniqueness: { scope: :friend }
+  validate :cannot_friend_self
 
   # Creates 2 Friendship records in order to simulate a bi-directional relationship.
   # Reference: https://medium.com/@miss.leslie.hsu/001-mutual-friendships-on-your-app-in-4-easy-steps-55cb27622585
@@ -19,5 +20,11 @@ class Friendship < ApplicationRecord
     end
 
     [user_friendship, friend_friendship]
+  end
+
+  private
+
+  def cannot_friend_self
+    errors.add(:user, 'cannot be the same as friend') if user_id == friend_id
   end
 end
